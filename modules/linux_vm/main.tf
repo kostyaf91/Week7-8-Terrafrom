@@ -18,6 +18,7 @@ resource "azurerm_network_interface" "NI" {
     public_ip_address_id = azurerm_public_ip.public-ip.id
   }
 }
+# VM creation
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   admin_username        = "ubuntu"
   location              = var.rg.location
