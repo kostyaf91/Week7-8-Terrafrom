@@ -1,13 +1,16 @@
+# DNS zone creation
 resource "azurerm_private_dns_zone" "private_dns" {
   name                = "${var.tag}.postgres.database.azure.com"
   resource_group_name = var.rg.name
 }
+# DNS link creation
 resource "azurerm_private_dns_zone_virtual_network_link" "dns-link" {
   name                  = "${var.tag}-vnet-zone-link.com"
   private_dns_zone_name = azurerm_private_dns_zone.private_dns.name
   resource_group_name   = var.rg.name
   virtual_network_id    = var.vnet.id
 }
+# Manager PostgreSQL creation 
 resource "azurerm_postgresql_flexible_server" "postgres-flexible-server" {
   location               = var.rg.location
   name                   = "${var.tag}-postgres-flex-server"
