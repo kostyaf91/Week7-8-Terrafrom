@@ -1,7 +1,8 @@
+# Local for my name convention
 locals {
   tag = "${terraform.workspace}-${var.tag}"
 }
-
+# Implimentations of the modules for the infrastructure
 module "network" {
   source              = "./modules/network"
   private_subnet_name = "${local.tag}-private-subnet"
@@ -44,6 +45,7 @@ module "managed_postgres" {
   tag               = local.tag
 }
 
+# This resource generates folder 'ansible' with outputs for each environment:
 resource "local_file" "test" {
   filename = "./ansible/vars/${terraform.workspace}-vars.yaml"
   depends_on = [
