@@ -37,7 +37,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
     version   = "latest"
   }
 }
-
+# Autoscale setiing creation
 resource "azurerm_monitor_autoscale_setting" "vm-autoscale" {
   location            = var.rg.location
   name                = "vm-autoscale"
